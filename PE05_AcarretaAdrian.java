@@ -70,37 +70,41 @@ public class PE05_AcarretaAdrian {
         if (!comanda.equals("")) {
             Boolean comandaCompletada=false;
             String producte;
-            do {
-                s.nextLine();
-                producte = producteFormatat();
-                
-                try {
-                    System.out.print(AMARILLO + "\n> Preu unitari (€): " + RESET);
-                    String preuUnitatString = s.next();
-                    double preuUnitat = Double.parseDouble(preuUnitatString);
-                    System.out.print(AMARILLO + "\n> Quantitat: " + RESET);
-                    String quantitatString = s.next();
-                    int quantitat = Integer.parseInt(quantitatString);
-                    double subtotal=quantitat*preuUnitat;
-                    totalProductes=totalProductes+subtotal;
-                    IVAperAplicar=totalProductes*0.10;
-                    totalNet=totalProductes+IVAperAplicar;
+            if (r.equalsIgnoreCase("s") || r.equalsIgnoreCase("n")) {
+                do {
+                    s.nextLine();
+                    producte = producteFormatat();
+                    
+                    try {
+                        System.out.print(AMARILLO + "\n> Preu unitari (€): " + RESET);
+                        String preuUnitatString = s.next();
+                        double preuUnitat = Double.parseDouble(preuUnitatString);
+                        System.out.print(AMARILLO + "\n> Quantitat: " + RESET);
+                        String quantitatString = s.next();
+                        int quantitat = Integer.parseInt(quantitatString);
+                        double subtotal=quantitat*preuUnitat;
+                        totalProductes=totalProductes+subtotal;
+                        IVAperAplicar=totalProductes*0.10;
+                        totalNet=totalProductes+IVAperAplicar;
 
-                    System.out.print(AMARILLO + "\n> Vols afegir un altre producte? (s/n): " + RESET);
-                    r = s.next();
-                    comanda=comanda+"\n"+producte+"\t"+quantitat+"\t\t"+String.format("%.2f", preuUnitat)+"\t\t"+String.format("%.2f", subtotal);
-                    comandaCompletada=true;
-                } catch (InputMismatchException e) {
-                    System.out.println(ROJO+"\n(!) Sisplau introdueix un número vàlid"+RESET);
-                    break;
-                } catch (NumberFormatException e) {
-                    System.out.println(ROJO+"\n(!) Sisplau introdueix un número vàlid"+RESET);
-                    break;
-                } catch (Exception e) {
-                    System.out.println(ROJO+"\nERROR DESCONEGUT: "+e+RESET);
-                    break;
-                }
-            } while (!r.equalsIgnoreCase("n"));
+                        System.out.print(AMARILLO + "\n> Vols afegir un altre producte? (s/n): " + RESET);
+                        r = s.next();
+                        comanda=comanda+"\n"+producte+"\t"+quantitat+"\t\t"+String.format("%.2f", preuUnitat)+"\t\t"+String.format("%.2f", subtotal);
+                        comandaCompletada=true;
+                    } catch (InputMismatchException e) {
+                        System.out.println(ROJO+"\n(!) Sisplau introdueix un número vàlid"+RESET);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println(ROJO+"\n(!) Sisplau introdueix un número vàlid"+RESET);
+                        break;
+                    } catch (Exception e) {
+                        System.out.println(ROJO+"\nERROR DESCONEGUT: "+e+RESET);
+                        break;
+                    }
+                } while (!r.equalsIgnoreCase("n"));
+            } else {
+                System.out.println(ROJO+"\n(!) Sisplau introdueix una opció vàlida"+RESET);
+            }
             if (comandaCompletada) {
                 imprimirTiquet(comanda);
             }
