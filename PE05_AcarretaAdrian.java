@@ -80,49 +80,49 @@ public class PE05_AcarretaAdrian {
             Boolean validOpt=false;
             String producte;
                 do {
-                        s.nextLine();
-                        producte = producteFormatat();
-                        
-                        try {
-                            System.out.print(AMARILLO + "\n> Preu unitari (0.01-999999): " + RESET);
-                            String preuUnitatString = s.next();
-                            double preuUnitat = Double.parseDouble(preuUnitatString);
-                            if (preuUnitat>999999 || preuUnitat<0.01) {
-                                System.out.println(ROJO+"\n(!) Sisplau introdueix un número entre 0.01 i 999999"+RESET);
+                    s.nextLine();
+                    producte = producteFormatat();
+                    
+                    try {
+                        System.out.print(AMARILLO + "\n> Preu unitari (0.01-999999): " + RESET);
+                        String preuUnitatString = s.next();
+                        double preuUnitat = Double.parseDouble(preuUnitatString);
+                        if (preuUnitat>999999 || preuUnitat<0.01) {
+                            System.out.println(ROJO+"\n(!) Sisplau introdueix un número entre 0.01 i 999999"+RESET);
+                        } else {
+                            System.out.print(AMARILLO + "\n> Quantitat (1-999): " + RESET);
+                            String quantitatString = s.next();
+                            int quantitat = Integer.parseInt(quantitatString);
+                            if (quantitat>999 || quantitat<1) {
+                                System.out.println(ROJO+"\n(!) Sisplau introdueix un número entre 1 i 999"+RESET);
                             } else {
-                                System.out.print(AMARILLO + "\n> Quantitat (1-999): " + RESET);
-                                String quantitatString = s.next();
-                                int quantitat = Integer.parseInt(quantitatString);
-                                if (quantitat>999 || quantitat<1) {
-                                    System.out.println(ROJO+"\n(!) Sisplau introdueix un número entre 1 i 999"+RESET);
-                                } else {
-                                    double subtotal=quantitat*preuUnitat;
-                                    totalProductes=totalProductes+subtotal;
-                                    IVAperAplicar=totalProductes*0.10;
-                                    totalNet=totalProductes+IVAperAplicar;
-                                    do {
-                                        System.out.print(AMARILLO + "\n> Vols afegir un altre producte? (s/n): " + RESET);
-                                        r = s.next();
-                                        if (r.equalsIgnoreCase("s") || r.equalsIgnoreCase("n")) {
-                                            validOpt=true;
-                                        } else {
-                                            System.out.println(ROJO+"\n(!) Sisplau introdueix una opció vàlida"+RESET);
-                                        }
-                                    } while (validOpt==false);
-                                    comanda=comanda+"\n"+producte+"\t"+quantitat+"\t\t"+String.format("%.2f", preuUnitat)+" $\t\t"+String.format("%.2f", subtotal)+" $";
-                                    comandaCompletada=true;
-                                }
+                                double subtotal=quantitat*preuUnitat;
+                                totalProductes=totalProductes+subtotal;
+                                IVAperAplicar=totalProductes*0.10;
+                                totalNet=totalProductes+IVAperAplicar;
+                                do {
+                                    System.out.print(AMARILLO + "\n> Vols afegir un altre producte? (s/n): " + RESET);
+                                    r = s.next();
+                                    if (r.equalsIgnoreCase("s") || r.equalsIgnoreCase("n")) {
+                                        validOpt=true;
+                                    } else {
+                                        System.out.println(ROJO+"\n(!) Sisplau introdueix una opció vàlida"+RESET);
+                                    }
+                                } while (validOpt==false);
+                                comanda=comanda+"\n"+producte+"\t"+quantitat+"\t\t"+String.format("%.2f", preuUnitat)+" $\t\t"+String.format("%.2f", subtotal)+" $";
+                                comandaCompletada=true;
                             }
-                        } catch (InputMismatchException e) {
-                            System.out.println(ROJO+"\n(!) Sisplau introdueix un número vàlid"+RESET);
-                            break;
-                        } catch (NumberFormatException e) {
-                            System.out.println(ROJO+"\n(!) Sisplau introdueix un número vàlid"+RESET);
-                            break;
-                        } catch (Exception e) {
-                            System.out.println(ROJO+"\nERROR DESCONEGUT: "+e+RESET);
-                            break;
                         }
+                    } catch (InputMismatchException e) {
+                        System.out.println(ROJO+"\n(!) Sisplau introdueix un número vàlid"+RESET);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println(ROJO+"\n(!) Sisplau introdueix un número vàlid"+RESET);
+                        break;
+                    } catch (Exception e) {
+                        System.out.println(ROJO+"\nERROR DESCONEGUT: "+e+RESET);
+                        break;
+                    }
                 } while (!r.equalsIgnoreCase("n"));
             
             if (comandaCompletada) {
