@@ -153,7 +153,7 @@ public class PE05_AcarretaAdrian {
             if (r.length()<16) {
                 nomFormatat=r;
                 int limit = 16-r.length();
-                for (int i=0;i<=limit;i++) {
+                for (int i=0;i<limit;i++) {
                     nomFormatat=nomFormatat+" ";
                 }
                 validName=true;
