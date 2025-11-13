@@ -101,7 +101,7 @@ public class PE05_AcarretaAdrian {
                                             System.out.println(ROJO+"\n(!) Sisplau introdueix una opció vàlida"+RESET);
                                         }
                                     } while (validOpt==false);
-                                    comanda=comanda+"\n"+producte+"\t"+quantitat+"\t\t"+String.format("%.2f", preuUnitat)+"\t\t"+String.format("%.2f", subtotal);
+                                    comanda=comanda+"\n"+producte+"\t"+quantitat+"\t\t"+String.format("%.2f", preuUnitat)+" $\t\t"+String.format("%.2f", subtotal)+" $";
                                     comandaCompletada=true;
                                 }
                             }
@@ -130,7 +130,7 @@ public class PE05_AcarretaAdrian {
         if (comanda.equals("")) {
             System.out.println(ROJO+"(!) Sisplau primer crea una comanda per utilitzar això\n"+RESET);
         } else {
-            comanda=comanda+"\n------------------------------------------------------------------------"+"\nTotal sense IVA:\t\t\t\t\t"+String.format("%.2f", totalProductes)+"\nIVA (10%):      \t\t\t\t\t"+String.format("%.2f", IVAperAplicar)+"\nTOTAL A PAGAR:  \t\t\t\t\t"+String.format("%.2f", totalNet)+"\n========================================================================\n";
+            comanda=comanda+"\n------------------------------------------------------------------------"+"\nTotal sense IVA:\t\t\t\t\t"+String.format("%.2f", totalProductes)+" $\nIVA (10%):      \t\t\t\t\t"+String.format("%.2f", IVAperAplicar)+" $\nTOTAL A PAGAR:  \t\t\t\t\t"+String.format("%.2f", totalNet)+" $\n========================================================================\n";
             System.out.println(AMARILLO+"\nS'està generant el tiquet..."+RESET);
             System.out.println(comanda);
         }
