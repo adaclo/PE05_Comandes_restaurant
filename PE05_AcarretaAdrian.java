@@ -55,14 +55,22 @@ public class PE05_AcarretaAdrian {
     }
 
     public String crearComanda(String comanda) {
+        Boolean validName=false;
         System.out.println("\n------------------------------------");
         System.out.println("=========== NOVA COMANDA ===========");
         System.out.println("------------------------------------\n");
-        System.out.print(AMARILLO + "\n> Introdueix el nom del client: " + RESET);
-        String nom = s.next();
-        comanda="\n------------------------------------------------------------------------\n============================== TIQUET ==============================\n------------------------------------------------------------------------\nClient: "+nom+"\n\nProducte\tQuantitat\tPreu unit.\tSubtotal\n------------------------------------------------------------------------";
-        r="n";
-        comanda=afegirProductes(comanda);
+        do {
+            System.out.print(AMARILLO + "\n> Introdueix el nom del client: " + RESET);
+            String nom = s.next();
+            if (nom.length()>24 || nom.length()<1) {
+                System.out.println(ROJO+"(!) Sisplau introdueix un nom amb 1-24 caràcters"+RESET);
+            } else {
+                validName=true;
+                comanda="\n------------------------------------------------------------------------\n============================== TIQUET ==============================\n------------------------------------------------------------------------\nClient: "+nom+"\n\nProducte\tQuantitat\tPreu unit.\tSubtotal\n------------------------------------------------------------------------";
+                r="n";
+                comanda=afegirProductes(comanda);     
+            }
+        } while(!validName);
         return comanda;
     }
 
